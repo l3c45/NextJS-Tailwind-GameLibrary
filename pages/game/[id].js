@@ -22,20 +22,27 @@ const Game = (props) => {
     rating_top,
     developers,
     publishers,
-    results,
+    results: trailer,
   } = props;
 
   const genresArr = genres.map((item) => item.name);
-  const tagsArr=tags.map((item) => item.name).sort((a,b)=>a[0]>b[0]?1:-1)
- 
+  const tagsArr = tags
+    .map((item) => item.name)
+    .sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
-  const esbr={
-    2:everyone,
-    3:teen,
-    4:mature
-  }
+  const esbr = {
+    2: everyone,
+    3: teen,
+    4: mature,
+  };
 
-  console.log(tagsArr);
+  const platformId = {
+    1: "xbox-one",
+    4: "pc",
+    18: "playstation4",
+  };
+
+  console.log(trailer);
   return (
     <Layout>
       <Head>
@@ -51,17 +58,27 @@ const Game = (props) => {
               <p key={i}>{item}</p>
             ))}
           </section>
+          {trailer ? (
+            <section className=" rounded bg-zinc-900/90 p-4 my-4">
+              <h2 className="text-3xl py-2">Trailers</h2>
+              <video controls src={"https://steamcdn-a.akamaihd.net/steam/apps/256693661/movie480.mp4"}></video>
+            </section>
+          ) : null}
           <section className="rounded bg-zinc-900/90 p-4 my-4">
-            <h2>Plataformas</h2>
-
-            {platforms.map((game, i) => {
-              return (
-                <div key={i}>
-                  <h4>{game.platform.name}</h4>
-                  <p>{game.released_at}</p>
-                </div>
-              );
-            })}
+            <h2 className="text-3xl py-2">Plataformas</h2>
+            <div className="grid grid-cols-5 gap-2  justify-items-center  py-4">
+              {platforms.map((game, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="rounded p-2 bg-zinc-700 w-32 h-48 my-2 flex flex-col justify-evenly"
+                  >
+                    <h4 className="text-center">{game.platform.name}</h4>
+                    <p className="text-center">{game.released_at}</p>
+                  </div>
+                );
+              })}
+            </div>
           </section>
         </div>
         <aside className="w-1/4 rounded bg-neutral-900 p-4 my-4 ml-4 ">
@@ -81,7 +98,6 @@ const Game = (props) => {
 
           <p className="italic text-gray-400">Web Oficial:</p>
           <p className="text-right w-full">
-          
             <a href={website} target="_blank" rel={"noreferrer"}>
               {website}
             </a>
@@ -89,8 +105,6 @@ const Game = (props) => {
 
           <p className="italic text-gray-400">Clasificacion:</p>
           <div className="flex justify-end">
-
-    
             <Image
               src={esbr[esrb_rating.id]}
               alt={"Clasification ESBR"}
@@ -109,9 +123,9 @@ const Game = (props) => {
               </span>
             ))}
           </div>
-          
-            <p className="italic text-gray-400"> Tags:</p>
-            <div className="flex justify-end flex-wrap">
+
+          <p className="italic text-gray-400"> Tags:</p>
+          <div className="flex justify-end flex-wrap">
             {tagsArr.map((item, i) => (
               <span
                 className="bg-zinc-800 m-1 px-1  rounded text-fuchsia-400"
