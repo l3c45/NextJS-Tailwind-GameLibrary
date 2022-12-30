@@ -6,7 +6,7 @@ import SeachInput from "./seach-input";
 
 const Layout = ({ children }) => {
   return (
-    <div className="bg-[#4a0339] flex items-center flex-col justify-between h-full ">
+    <div className="bg-[#4a0339] flex items-center flex-col justify-between h-full min-h-screen ">
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -19,7 +19,7 @@ const Layout = ({ children }) => {
      <h1 className="text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
      <SeachInput ></SeachInput>
       </header>
-      <main className="w-full grid grid-cols-3 gap-4 p-10" >{children}</main>
+      <main className="w-screen" >{children}</main>
       <footer className="w-full bg-zinc-900 text-center h-16 flex items-center justify-center" >
       <p className="text-xl text-fuchsia-600">l3c45</p>
       </footer>
