@@ -49,26 +49,26 @@ const Game = (props) => {
       <Head>
         <title>{name}</title>
       </Head>
-      <div className="flex flex-col-reverse md:flex-row w-screen px-8">
+      <div className="flex flex-col-reverse md:flex-row w-screen px-1 md:px-8">
         <div className="md:w-3/4">
           <section className=" rounded bg-zinc-900/90 p-4 my-4">
-            <h2 className="text-3xl py-2">{name}</h2>
+            <h2 className="text-3xl py-2 text-white">{name}</h2>
             <Rating rating={rating}></Rating>
 
             {description_raw.split("\n").map((item, i) => (
-              <p key={i}>{item}</p>
+              <p className="text-white" key={i}>{item}</p>
             ))}
           </section>
 
           {trailer.length !== 0 ? (
             <section className=" rounded bg-zinc-900/90 p-4 my-4">
-              <h2 className="text-3xl py-2">Trailers</h2>
+              <h2 className="text-3xl py-2 text-white-800">Trailers</h2>
               <video controls src={trailerIsHere}></video>
             </section>
           ) : null}
 
           <section className="rounded bg-zinc-900/90 p-4 my-4">
-            <h2 className="text-3xl py-2">Plataformas</h2>
+            <h2 className="text-3xl py-2 text-white">Plataformas</h2>
             <div className="grid  sm:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-2  justify-items-center  py-4">
               {platforms.map((game, i) => {
                 return (
@@ -93,13 +93,13 @@ const Game = (props) => {
           ></Image>
 
           <p className="italic text-gray-400">Lanzamiento:</p>
-          <p className="text-right">{released}</p>
+          <p className="text-right text-white">{released}</p>
 
           <p className="italic text-gray-400">Editor:</p>
-          <p className="text-right">{publishers[0].name}</p>
+          <p className="text-right text-white">{publishers[0].name}</p>
 
           <p className="italic text-gray-400">Web Oficial:</p>
-          <p className="text-right w-full break-words">
+          <p className="text-right  text-white w-full break-words">
             <a href={website} target="_blank" rel={"noreferrer"}>
               {website}
             </a>

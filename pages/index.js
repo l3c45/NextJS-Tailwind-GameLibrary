@@ -19,14 +19,14 @@ export default function Home({necesaryData}) {
       <Head>
         <title>Games Library</title>
       </Head>
-<section className="w-full grid grid-cols-3 gap-4 p-10">
+<section className="w-full grid grid-cols-2  gap-1md:grid-cols-3 md:gap-4 md:p-10 p-2">
       {necesaryData.map((game) => {
         return (
-          <article className='flex flex-col items-center' key={game.id}>
+          <article className='flex flex-col items-center my-2' key={game.id}>
           <Link href={`game/${game.id}`}>
-            <Image className='w-64 h-96 object-cover' width={700} height={500} src={game.bgImage} alt="GAME IMAGE"></Image>
+            <Image className='w-40 h-64 md:w-64 md:h-96 object-cover ' width={700} height={500} src={game.bgImage} alt="GAME IMAGE"></Image>
             
-            <h5 className='w-64 bg-zinc-900 text-center py-4 text-fuchsia-600 font-bold text-lg'>{game.name}</h5>
+            <h5 className=' w-40 md:w-64 bg-zinc-900 text-center py-4 text-fuchsia-600 font-bold text-lg'>{game.name}</h5>
             </Link>
           </article>
        

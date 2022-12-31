@@ -39,8 +39,8 @@ console.log(name,id)
     className="rounded p-2 bg-zinc-700 w-32 h-48 my-2 flex flex-col justify-evenly"
   >
   <Image src={logo[id]} width={"auto"} height={100} alt={"platform logo"} ></Image>
-    <h4 className="text-center">{name}</h4>
-    <p className="text-center">{date}</p>
+    <h4 className="text-center text-white">{name}</h4>
+    <p className="text-center text-white">{date}</p>
   </div>
   )
 }
