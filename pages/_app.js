@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import Router from 'next/router'
 import { useState, useEffect } from 'react';
 import Loader from '../components/loader';
+import NProgress from 'nprogress'
 
 
 export default function App({ Component, pageProps }) {
