@@ -27,9 +27,8 @@ const Game = (props) => {
   } = props;
 
   const genresArr = genres.map((item) => item.name);
-  const tagsArr = tags
-    .map((item) => item.name)
-    //.sort((a, b) => (a[0] > b[0] ? 1 : -1));
+  const tagsArr = tags.map((item) => item.name);
+  //.sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
   const esbr = {
     2: everyone,
@@ -43,16 +42,15 @@ const Game = (props) => {
     18: "playstation4",
   };
 
-
-  const trailerIsHere=trailer[0]?.data[480]
+  const trailerIsHere = trailer[0]?.data[480];
 
   return (
     <Layout>
       <Head>
         <title>{name}</title>
       </Head>
-      <div className="flex flex-row w-screen px-8">
-        <div className="w-3/4">
+      <div className="flex flex-col-reverse md:flex-row w-screen px-8">
+        <div className="md:w-3/4">
           <section className=" rounded bg-zinc-900/90 p-4 my-4">
             <h2 className="text-3xl py-2">{name}</h2>
             <Rating rating={rating}></Rating>
@@ -62,31 +60,30 @@ const Game = (props) => {
             ))}
           </section>
 
-          {trailer.length!==0 ? (
+          {trailer.length !== 0 ? (
             <section className=" rounded bg-zinc-900/90 p-4 my-4">
               <h2 className="text-3xl py-2">Trailers</h2>
-              <video controls src={trailerIsHere } ></video>
+              <video controls src={trailerIsHere}></video>
             </section>
           ) : null}
 
-          
           <section className="rounded bg-zinc-900/90 p-4 my-4">
             <h2 className="text-3xl py-2">Plataformas</h2>
-            <div className="grid grid-cols-5 gap-2  justify-items-center  py-4">
+            <div className="grid  sm:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-2  justify-items-center  py-4">
               {platforms.map((game, i) => {
                 return (
-                  <Platform key={i} 
-                  name={game.platform.name}
-                   date={game.released_at} 
-                   id={game.platform.id}></Platform>
-                
+                  <Platform
+                    key={i}
+                    name={game.platform.name}
+                    date={game.released_at}
+                    id={game.platform.id}
+                  ></Platform>
                 );
               })}
-
             </div>
           </section>
         </div>
-        <aside className="w-1/4 rounded bg-neutral-900 p-4 my-4 ml-4 ">
+        <aside className="md:w-1/4  rounded bg-neutral-900 p-4 my-4 md:ml-4 ">
           <Image
             className="py-2 h-48 object-cover"
             width={500}
@@ -102,7 +99,7 @@ const Game = (props) => {
           <p className="text-right">{publishers[0].name}</p>
 
           <p className="italic text-gray-400">Web Oficial:</p>
-          <p className="text-right w-full">
+          <p className="text-right w-full break-words">
             <a href={website} target="_blank" rel={"noreferrer"}>
               {website}
             </a>

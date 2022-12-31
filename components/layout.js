@@ -18,20 +18,23 @@ const [search, setSearch] = useState(false)
           content="Learn how to build a personal website using Next.js"
         />
       </Head>
-      <header className="bg-zinc-900 relative w-full px-6 flex items-center justify-center h-24 ">
-        <Link className=" absolute left-4 " href={"/"}>
-        <Image  src={logo} alt={"logo"} width={"100"}></Image>
+      <header className="bg-zinc-900  w-full px-6 py-3 flex flex-row flex-wrap items-center justify-between h-36 md:h-24 ">
+        <Link  href={"/"}>
+        <Image className=" w-12 md:w-24" src={logo} alt={"logo"} width={"100"}></Image>
         </Link>
-     <h1 className="text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
-
+     <h1 className="md:text-5xl text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
+<div className="md:w-auto w-full flex justify-end">
 {
   !search?
   <MagnifyingGlassIcon
 onClick={()=>setSearch(!search)}
-   className="h-6 w-6 text-fuchsia-600 absolute right-6 "/>
+   className="h-6 w-6 text-fuchsia-600  "
+
+   />
   :
   <SeachInput  ></SeachInput>
 }
+</div>
 
       </header>
       <main className="w-screen" >{children}</main>
