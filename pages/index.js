@@ -10,16 +10,18 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({necesaryData}) {
 
+ 
+
 
 
 
   return (
-    <>
+   
      <Layout>
       <Head>
         <title>Games Library</title>
       </Head>
-<section className="w-full grid grid-cols-2  gap-1md:grid-cols-3 md:gap-4 md:p-10 p-2">
+<section className="w-full grid grid-cols-2  gap-1 md:grid-cols-4 md:gap-4 md:p-10 p-2">
       {necesaryData.map((game) => {
         return (
           <article className='flex flex-col items-center my-2' key={game.id}>
@@ -35,7 +37,7 @@ export default function Home({necesaryData}) {
       </section>
       
      </Layout>
-    </>
+   
   )
 }
 

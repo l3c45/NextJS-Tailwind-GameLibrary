@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SeachInput = () => {
+const SeachInput = ({search}) => {
   const [input, setInput] = useState("");
 
   const handlechangue = (e) => {
@@ -9,7 +9,7 @@ const SeachInput = () => {
 
   const sumbitForm = (e) => {
     e.preventDefault();
-    console.log("envio", input);
+    search(input)
     setInput("");
   };
 

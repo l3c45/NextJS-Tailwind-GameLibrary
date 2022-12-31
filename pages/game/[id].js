@@ -96,7 +96,7 @@ const Game = (props) => {
           <p className="text-right text-white">{released}</p>
 
           <p className="italic text-gray-400">Editor:</p>
-          <p className="text-right text-white">{publishers[0].name}</p>
+          <p className="text-right text-white">{publishers[0]?.name}</p>
 
           <p className="italic text-gray-400">Web Oficial:</p>
           <p className="text-right  text-white w-full break-words">
@@ -108,7 +108,7 @@ const Game = (props) => {
           <p className="italic text-gray-400">Clasificacion:</p>
           <div className="flex justify-end">
             <Image
-              src={esbr[esrb_rating.id]}
+              src={esbr[esrb_rating?.id]}
               alt={"Clasification ESBR"}
               width={"auto"}
               height={50}

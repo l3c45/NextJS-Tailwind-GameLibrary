@@ -5,9 +5,18 @@ import logo from "../public/logo.png";
 import SeachInput from "./seach-input";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useRouter } from 'next/router'
+
 
 const Layout = ({ children }) => {
 const [search, setSearch] = useState(false)
+
+const router = useRouter()
+
+const searchGame= (input)=>{
+  
+router.push(`/search?game=${input}`)
+}
 
   return (
     <div className="bg-[#4a0339] flex items-center flex-col justify-between h-full min-h-screen ">
@@ -18,11 +27,14 @@ const [search, setSearch] = useState(false)
           content="Learn how to build a personal website using Next.js"
         />
       </Head>
-      <header className="bg-zinc-900  w-full px-6 py-3 flex flex-row flex-wrap items-center justify-between h-36 md:h-24 ">
+      <header className="bg-zinc-900  w-full px-6  flex flex-row flex-wrap items-center justify-between h-36 md:h-24 ">
         <Link  href={"/"}>
         <Image className=" w-12 md:w-24" src={logo} alt={"logo"} width={"100"}></Image>
         </Link>
+        <Link  href={"/"}>
+    
      <h1 className="md:text-5xl text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
+</Link>
 <div className="md:w-auto w-full flex justify-end">
 {
   !search?
@@ -32,7 +44,7 @@ onClick={()=>setSearch(!search)}
 
    />
   :
-  <SeachInput  ></SeachInput>
+  <SeachInput search={searchGame} ></SeachInput>
 }
 </div>
 
