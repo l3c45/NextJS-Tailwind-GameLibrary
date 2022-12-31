@@ -6,6 +6,7 @@ import Rating from "../../components/rating";
 import mature from "../../public/rating/3.svg";
 import teen from "../../public/rating/2.svg";
 import everyone from "../../public/rating/1.svg";
+import Platform from "../../components/platform";
 
 const Game = (props) => {
   const {
@@ -28,7 +29,7 @@ const Game = (props) => {
   const genresArr = genres.map((item) => item.name);
   const tagsArr = tags
     .map((item) => item.name)
-    .sort((a, b) => (a[0] > b[0] ? 1 : -1));
+    //.sort((a, b) => (a[0] > b[0] ? 1 : -1));
 
   const esbr = {
     2: everyone,
@@ -42,7 +43,9 @@ const Game = (props) => {
     18: "playstation4",
   };
 
-  console.log(trailer);
+
+  const trailerIsHere=trailer[0]?.data[480]
+
   return (
     <Layout>
       <Head>
@@ -58,26 +61,28 @@ const Game = (props) => {
               <p key={i}>{item}</p>
             ))}
           </section>
-          {trailer ? (
+
+          {trailer.length!==0 ? (
             <section className=" rounded bg-zinc-900/90 p-4 my-4">
               <h2 className="text-3xl py-2">Trailers</h2>
-              <video controls src={"https://steamcdn-a.akamaihd.net/steam/apps/256693661/movie480.mp4"}></video>
+              <video controls src={trailerIsHere } ></video>
             </section>
           ) : null}
+
+          
           <section className="rounded bg-zinc-900/90 p-4 my-4">
             <h2 className="text-3xl py-2">Plataformas</h2>
             <div className="grid grid-cols-5 gap-2  justify-items-center  py-4">
               {platforms.map((game, i) => {
                 return (
-                  <div
-                    key={i}
-                    className="rounded p-2 bg-zinc-700 w-32 h-48 my-2 flex flex-col justify-evenly"
-                  >
-                    <h4 className="text-center">{game.platform.name}</h4>
-                    <p className="text-center">{game.released_at}</p>
-                  </div>
+                  <Platform key={i} 
+                  name={game.platform.name}
+                   date={game.released_at} 
+                   id={game.platform.id}></Platform>
+                
                 );
               })}
+
             </div>
           </section>
         </div>
@@ -108,7 +113,7 @@ const Game = (props) => {
             <Image
               src={esbr[esrb_rating.id]}
               alt={"Clasification ESBR"}
-              width={50}
+              width={"auto"}
               height={50}
             ></Image>
           </div>
