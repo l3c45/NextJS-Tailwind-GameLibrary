@@ -21,8 +21,6 @@ const Game = (props) => {
     tags,
     website,
     rating,
-    rating_top,
-    developers,
     publishers,
     results: trailer,
     dlc
@@ -87,8 +85,12 @@ const Game = (props) => {
 
 
          { dlc.length!==0?
+
+         
           <section className="rounded bg-zinc-900/90 p-4 my-4">
             <h2 className="text-3xl py-2 text-white">Complementos y DLC</h2>
+       
+          
             <div className="grid  sm:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-2  justify-items-center  py-4">
              {dlc.map((item,i)=>{
               return (

@@ -39,7 +39,7 @@ const logo={
 
 const Platform = ({name,date,id}) => {
     
-console.log(name,id)
+//console.log(name,id)
   return (
     <div
     className="rounded p-2 bg-zinc-700 w-32 h-48 my-2 flex flex-col justify-evenly"

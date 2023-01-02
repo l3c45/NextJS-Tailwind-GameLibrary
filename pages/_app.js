@@ -9,6 +9,8 @@ export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   const [queryClient] = useState(() => new QueryClient());
 
+
+
   useEffect(() => {
     Router.events.on("routeChangeStart", (url) => {
       setIsLoading(true);

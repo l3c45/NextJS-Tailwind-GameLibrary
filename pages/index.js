@@ -9,18 +9,17 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { PuffLoader } from "react-spinners";
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ dehydratedState }) {
-  const arr = dehydratedState.queries[0].state.data.results;
+  const arr = dehydratedState.queries[0].state.data;
 
   const router = useRouter();
 
   const [necesaryData, setNecesaryData] = useState(arr);
-  const [page, setPage] = useState(parseInt(router.query.page) || 1);
+  const [page, setPage] = useState( 1);
   const { data } = useQuery(
-    ["characters", page],
+    ["games", page],
     async () =>
       await fetch(
         `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_APIKEY}&page=${page}`
@@ -50,9 +49,10 @@ export default function Home({ dehydratedState }) {
         next={() => handlePaginationChange()}
         hasMore={true}
         loader={
-        <div  className="flex justify-center" >
-        <PuffLoader  color="#fff" size={100} />
-        </div>}
+          <div className="flex justify-center">
+            <PuffLoader color="#fff" size={100} />
+          </div>
+        }
       >
         <section className="w-full grid grid-cols-2  gap-1 md:grid-cols-4 md:gap-4 md:p-10 p-2">
           {necesaryData.map((game, i) => {
@@ -83,18 +83,23 @@ export default function Home({ dehydratedState }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  let page = 1;
-  if (context.query.page) {
-    page = parseInt(context.query.page);
-  }
+export async function getServerSideProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    ["characters", page],
-    async () =>
-      await fetch(
-        `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_APIKEY}&page=${page}`
-      ).then((result) => result.json())
-  );
+  await queryClient.prefetchQuery(["games"], async () => {
+    const res = await fetch(
+      `https://api.rawg.io/api/games?key=${process.env.NEXT_PUBLIC_APIKEY}`
+    );
+    const data = await res.json();
+    const games = data.results.map(({ background_image, name, id }) => {
+      return {
+        id,
+        background_image,
+        name,
+      };
+    });
+  
+    return games;
+  });
+
   return { props: { dehydratedState: dehydrate(queryClient) } };
 }
