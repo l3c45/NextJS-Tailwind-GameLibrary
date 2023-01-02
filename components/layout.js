@@ -27,13 +27,13 @@ router.push(`/search?game=${input}`)
           content="Learn how to build a personal website using Next.js"
         />
       </Head>
-      <header className="bg-zinc-900  w-full px-6  flex flex-row flex-wrap items-center justify-between h-36 md:h-24 ">
+      <header className=" bg-zinc-900  w-full px-6  flex flex-row flex-wrap items-center justify-between h-36 md:h-24 ">
         <Link  href={"/"}>
         <Image className=" w-12 md:w-24" src={logo} alt={"logo"} width={"100"}></Image>
         </Link>
         <Link  href={"/"}>
     
-     <h1 className="md:text-5xl text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
+     <h1 className=" md:text-5xl text-3xl text-fuchsia-600  text-center ">The Game Library</h1>
 </Link>
 <div className="md:w-auto w-full flex justify-end">
 {

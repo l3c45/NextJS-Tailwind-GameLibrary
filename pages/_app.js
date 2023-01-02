@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Loader from "../components/loader";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 
-import { ReactQueryDevtools } from "react-query/devtools";
 
 export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +27,9 @@ export default function App({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           {isLoading && <Loader />}
+         
           <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+        
         </Hydrate>
       </QueryClientProvider>
     </>

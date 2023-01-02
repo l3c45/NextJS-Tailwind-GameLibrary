@@ -7,8 +7,8 @@ import { useQuery, dehydrate, QueryClient } from "react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { PuffLoader } from "react-spinners";
 
-import { useInfiniteQuery } from "react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,6 +49,10 @@ export default function Home({ dehydratedState }) {
         dataLength={necesaryData.length}
         next={() => handlePaginationChange()}
         hasMore={true}
+        loader={
+        <div  className="flex justify-center" >
+        <PuffLoader  color="#fff" size={100} />
+        </div>}
       >
         <section className="w-full grid grid-cols-2  gap-1 md:grid-cols-4 md:gap-4 md:p-10 p-2">
           {necesaryData.map((game, i) => {
