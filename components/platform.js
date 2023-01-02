@@ -6,21 +6,27 @@ import ps5 from "../public/platforms/ps5.png"
 import xbs from "../public/platforms/xbs.png"
 import x360 from "../public/platforms/x360.png"
 import xbo from "../public/platforms/xbo.png"
+import linux from "../public/platforms/linux.png"
+import mac from "../public/platforms/mac.png"
+import vita from "../public/platforms/vita.png"
+import ios from "../public/platforms/ios.png"
+import android from "../public/platforms/android.png"
+
 import Image from "next/image"
 //TODO: 6 ,5,3,21,19
 const logo={
     1:xbo,
     2:xbo,
-    3:xbo,
+    3:ios,
     4:w,
-    6:w,
-    5:w,
+    6:linux,
+    5:mac,
     7:ns,
     14:x360,
     16:ps3,
     18:ps4,
     19:ps4,
-    21:w,
+    21:android,
     186:xbs,
     187:ps5,
 

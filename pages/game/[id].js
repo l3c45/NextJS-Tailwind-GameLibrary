@@ -7,6 +7,7 @@ import mature from "../../public/rating/3.svg";
 import teen from "../../public/rating/2.svg";
 import everyone from "../../public/rating/1.svg";
 import Platform from "../../components/platform";
+import soon from "../../public/soon.png"
 
 const Game = (props) => {
   const {
@@ -24,6 +25,7 @@ const Game = (props) => {
     developers,
     publishers,
     results: trailer,
+    dlc
   } = props;
 
   const genresArr = genres.map((item) => item.name);
@@ -82,8 +84,34 @@ const Game = (props) => {
               })}
             </div>
           </section>
+
+
+         { dlc.length!==0?
+          <section className="rounded bg-zinc-900/90 p-4 my-4">
+            <h2 className="text-3xl py-2 text-white">Complementos y DLC</h2>
+            <div className="grid  sm:grid-cols-2  md:grid-cols-4 lg:grid-cols-5 gap-2  justify-items-center  py-4">
+             {dlc.map((item,i)=>{
+              return (
+                <article key={i} >
+                  <Image
+                  className="py-2 h-48 object-cover"
+            width={200}
+            height={200}
+            src={item?.background_image || soon}
+            alt={"Videogame Image"}>
+
+                  </Image>
+                  <h4 className="text-center" >{item.name}</h4>
+                </article>
+              )
+             })
+
+             }
+            </div>
+          </section>
+          : null}
         </div>
-        <aside className="md:w-1/4  rounded bg-neutral-900 p-4 my-4 md:ml-4 ">
+        <aside className="md:w-1/4  rounded bg-neutral-900 p-4 my-4 md:ml-4 h-min">
           <Image
             className="py-2 h-48 object-cover"
             width={500}
@@ -105,7 +133,9 @@ const Game = (props) => {
             </a>
           </p>
 
-          <p className="italic text-gray-400">Clasificacion:</p>
+        { esrb_rating?.id ?
+        <>
+           <p className="italic text-gray-400">Clasificacion:</p>
           <div className="flex justify-end">
             <Image
               src={esbr[esrb_rating?.id]}
@@ -114,6 +144,8 @@ const Game = (props) => {
               height={50}
             ></Image>
           </div>
+          </>
+          :null}
           <p className="italic text-gray-400">Generos:</p>
           <div className="flex justify-end flex-wrap">
             {genresArr.map((item, i) => (
@@ -152,14 +184,20 @@ export const getServerSideProps = async ({ params: { id } }) => {
   const preTrailer = await fetch(
     `https://api.rawg.io/api/games/${id}/movies?key=${process.env.NEXT_PUBLIC_APIKEY}`
   );
+  const dclData = await fetch(
+    `https://api.rawg.io/api/games/${id}/additions?key=${process.env.NEXT_PUBLIC_APIKEY}`
+  );
 
   const gameData = await preGameData.json();
   const trailer = await preTrailer.json();
+  const dlc=await dclData.json()
 
   return {
     props: {
       ...gameData,
       ...trailer,
+      dlc:dlc.results
+      
     },
   };
 };
